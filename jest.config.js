@@ -48,11 +48,6 @@ module.exports = {
     '^@config/(.*)$': '<rootDir>/config/$1',
   },
   
-  // Transform configuration
-  transform: {
-    '^.+\\.js$': 'babel-jest',
-  },
-  
   // Test timeout
   testTimeout: 10000,
   
