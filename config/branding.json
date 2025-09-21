@@ -1,0 +1,29 @@
+{
+  "logo": {
+    "path": "assets/images/sahkokilta-logo.png",
+    "fallbackPath": "assets/images/logo-fallback.png",
+    "position": "top-left",
+    "size": {
+      "width": 200,
+      "height": 100
+    },
+    "alt": "Sähkökilta ry Logo"
+  },
+  "theme": {
+    "colors": {
+      "primary": "#0066cc",
+      "secondary": "#004499",
+      "accent": "#ffcc00",
+      "background": "#ffffff",
+      "text": "#333333"
+    },
+    "fonts": {
+      "primary": "Arial, sans-serif",
+      "secondary": "Helvetica, sans-serif"
+    }
+  },
+  "layout": {
+    "logoRegion": "top_left",
+    "backgroundStyle": "solid"
+  }
+}

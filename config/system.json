@@ -1,0 +1,22 @@
+{
+  "display": {
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "orientation": "landscape",
+    "scaleFactor": 1.0,
+    "fullscreen": true
+  },
+  "performance": {
+    "refreshRate": 60,
+    "memoryLimit": "512M",
+    "cpuThreshold": 80
+  },
+  "logging": {
+    "level": "info",
+    "logPath": "logs/",
+    "maxFileSize": "10M",
+    "maxFiles": 5
+  }
+}

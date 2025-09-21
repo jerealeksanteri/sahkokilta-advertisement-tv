@@ -1,0 +1,23 @@
+{
+  "sponsors": [
+    {
+      "id": "example-sponsor",
+      "name": "Example Sponsor",
+      "logoPath": "assets/images/sponsors/example-sponsor.png",
+      "displayDuration": 10000,
+      "priority": 1,
+      "active": true,
+      "metadata": {
+        "addedDate": "2025-01-01",
+        "contactInfo": "contact@example.com"
+      }
+    }
+  ],
+  "settings": {
+    "defaultDuration": 10000,
+    "transitionType": "fade",
+    "transitionDuration": 1000,
+    "shuffleOrder": false,
+    "respectPriority": true
+  }
+}
