@@ -1,0 +1,451 @@
+/* MMM-SponsorCarousel Styles */
+
+.sponsor-carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Loading state */
+.carousel-loading {
+  color: var(--brand-text, #333333);
+  font-family: var(--brand-font-primary, Arial, sans-serif);
+  font-size: 1.2em;
+  text-align: center;
+  padding: 20px;
+  opacity: 0.7;
+}
+
+/* Error state */
+.carousel-error {
+  color: #ff4444;
+  font-family: var(--brand-font-primary, Arial, sans-serif);
+  font-size: 1.1em;
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #ff4444;
+  border-radius: 8px;
+  background-color: rgba(255, 68, 68, 0.1);
+}
+
+/* Fallback message */
+.carousel-fallback {
+  color: var(--brand-text, #333333);
+  font-family: var(--brand-font-primary, Arial, sans-serif);
+  font-size: 1.1em;
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* Main carousel container */
+.carousel-main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Carousel state indicators */
+.carousel-main.carousel-running::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--brand-accent, #FFD23F);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  z-index: 10;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* Progress indicator (optional) */
+.carousel-main.show-progress::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.carousel-main.show-progress .progress-bar {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  background-color: var(--brand-primary, #FF6B35);
+  border-radius: 2px;
+  transition: width linear;
+  z-index: 5;
+}
+
+/* Sponsor item container */
+.sponsor-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Sponsor media (logo/ad) */
+.sponsor-media {
+  max-width: 100%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sponsor-media:hover {
+  transform: scale(1.02);
+}
+
+/* Sponsor name */
+.sponsor-name {
+  margin-top: 15px;
+  color: var(--brand-text, #333333);
+  font-family: var(--brand-font-primary, Arial, sans-serif);
+  font-size: 1.1em;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Sponsor fallback (text only) */
+.sponsor-fallback {
+  color: var(--brand-primary, #FF6B35);
+  font-family: var(--brand-font-primary, Arial, sans-serif);
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  padding: 40px;
+  border: 3px solid var(--brand-primary, #FF6B35);
+  border-radius: 12px;
+  background-color: rgba(255, 107, 53, 0.1);
+  min-width: 200px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animation classes */
+
+/* Fade animation */
+.carousel-fade .sponsor-item {
+  animation: fadeIn var(--transition-duration, 1s) ease-in-out;
+}
+
+.carousel-fade .sponsor-item.exiting {
+  animation: fadeOut var(--transition-duration, 1s) ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Slide animation */
+.carousel-slide .sponsor-item {
+  animation: slideInRight var(--transition-duration, 1s) ease-in-out;
+}
+
+.carousel-slide .sponsor-item.exiting {
+  animation: slideOutLeft var(--transition-duration, 1s) ease-in-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* Alternative slide directions */
+.carousel-slide.slide-up .sponsor-item {
+  animation: slideInUp var(--transition-duration, 1s) ease-in-out;
+}
+
+.carousel-slide.slide-up .sponsor-item.exiting {
+  animation: slideOutDown var(--transition-duration, 1s) ease-in-out;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Zoom animation */
+.carousel-zoom .sponsor-item {
+  animation: zoomIn var(--transition-duration, 1s) ease-in-out;
+}
+
+.carousel-zoom .sponsor-item.exiting {
+  animation: zoomOut var(--transition-duration, 1s) ease-in-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Rotation animation (bonus) */
+.carousel-rotate .sponsor-item {
+  animation: rotateIn var(--transition-duration, 1s) ease-in-out;
+}
+
+.carousel-rotate .sponsor-item.exiting {
+  animation: rotateOut var(--transition-duration, 1s) ease-in-out;
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-180deg) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateOut {
+  from {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(180deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Flip animation (bonus) */
+.carousel-flip .sponsor-item {
+  animation: flipIn var(--transition-duration, 1s) ease-in-out;
+}
+
+.carousel-flip .sponsor-item.exiting {
+  animation: flipOut var(--transition-duration, 1s) ease-in-out;
+}
+
+@keyframes flipIn {
+  from {
+    transform: perspective(400px) rotateY(-90deg);
+    opacity: 0;
+  }
+  to {
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flipOut {
+  from {
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive design for different screen sizes */
+
+/* Large screens (TV displays) */
+@media (min-width: 1920px) {
+  .sponsor-media {
+    max-height: 70%;
+  }
+  
+  .sponsor-name {
+    font-size: 1.4em;
+    margin-top: 20px;
+  }
+  
+  .sponsor-fallback {
+    font-size: 2.5em;
+    padding: 60px;
+    min-width: 300px;
+    min-height: 150px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 1280px) {
+  .sponsor-media {
+    max-height: 75%;
+  }
+  
+  .sponsor-name {
+    font-size: 1em;
+    margin-top: 12px;
+  }
+  
+  .sponsor-fallback {
+    font-size: 1.8em;
+    padding: 30px;
+    min-width: 180px;
+    min-height: 80px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+  .sponsor-media {
+    max-height: 70%;
+  }
+  
+  .sponsor-name {
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
+  
+  .sponsor-fallback {
+    font-size: 1.5em;
+    padding: 20px;
+    min-width: 150px;
+    min-height: 60px;
+  }
+  
+  .carousel-error,
+  .carousel-loading,
+  .carousel-fallback {
+    font-size: 1em;
+    padding: 15px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .sponsor-media {
+    border: 2px solid var(--brand-text, #333333);
+  }
+  
+  .sponsor-name {
+    text-shadow: none;
+    font-weight: bold;
+  }
+  
+  .sponsor-fallback {
+    border-width: 4px;
+    background-color: transparent;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-fade .sponsor-item,
+  .carousel-slide .sponsor-item,
+  .carousel-zoom .sponsor-item {
+    animation: none;
+  }
+  
+  .sponsor-media {
+    transition: none;
+  }
+  
+  .sponsor-media:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .sponsor-carousel-container {
+    display: none;
+  }
+}
