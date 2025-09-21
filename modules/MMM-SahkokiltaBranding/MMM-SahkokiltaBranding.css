@@ -2,14 +2,14 @@
  * Styles for Sähkökilta ry Branding Module
  */
 
-/* CSS Custom Properties for Brand Colors */
+/* CSS Custom Properties for Sähkökilta Brand Colors */
 :root {
-  --brand-primary: #FF6B35;
-  --brand-secondary: #004E89;
-  --brand-accent: #FFD23F;
-  --brand-background: #FFFFFF;
-  --brand-text: #333333;
-  --brand-font-primary: Arial, sans-serif;
+  --brand-primary: #1e5aa8;      /* Electric Blue */
+  --brand-secondary: #2D2D2D;    /* Dark Gray */
+  --brand-accent: #FFDD00;       /* Lightning Yellow */
+  --brand-background: #FFFFFF;   /* White */
+  --brand-text: #2D2D2D;        /* Dark Gray for text */
+  --brand-font-primary: 'Segoe UI', 'Roboto', Arial, sans-serif;
   --brand-font-secondary: Georgia, serif;
 }
 

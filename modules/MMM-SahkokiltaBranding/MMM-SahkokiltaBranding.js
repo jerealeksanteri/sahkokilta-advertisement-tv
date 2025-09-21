@@ -12,11 +12,11 @@ Module.register("MMM-SahkokiltaBranding", {
     logoPath: "assets/images/sahkokilta-logo.png",
     fallbackLogoPath: "assets/images/sahkokilta-logo-fallback.png",
     brandColors: {
-      primary: "#FF6B35",
-      secondary: "#004E89",
-      accent: "#FFD23F",
-      background: "#FFFFFF",
-      text: "#333333"
+      primary: "#1e5aa8",      // Electric Blue
+      secondary: "#2D2D2D",    // Dark Gray
+      accent: "#FFDD00",       // Lightning Yellow
+      background: "#FFFFFF",   // White
+      text: "#2D2D2D"         // Dark Gray for text
     },
     logoPosition: "top-left",
     logoSize: {

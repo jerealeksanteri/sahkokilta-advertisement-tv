@@ -1,1 +1,13 @@
-# This file ensures the sponsors directory is tracked by git
+# Sponsor logos directory
+# Place sponsor logo files here (PNG, JPG, SVG formats supported)
+# 
+# Recommended specifications:
+# - Resolution: 1920x1080 or higher
+# - Format: PNG with transparent background preferred
+# - File size: Under 2MB for optimal performance
+# - Aspect ratio: Maintain original logo proportions
+#
+# Example files:
+# - company-name.png
+# - sponsor-logo.svg
+# - brand-logo.jpg

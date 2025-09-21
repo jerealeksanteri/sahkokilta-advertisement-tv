@@ -1,41 +1,39 @@
 {
   "sponsors": [
     {
-      "id": "example-sponsor-1",
-      "name": "Example Technology Corp",
-      "logoPath": "assets/images/sponsors/example-tech-logo.png",
-      "displayDuration": 12000,
-      "priority": 8,
+      "id": "nokia",
+      "name": "Nokia",
+      "logoPath": "assets/images/sponsors/nokia.jpg",
+      "displayDuration": 10000,
+      "priority": 1,
       "active": true,
       "metadata": {
-        "addedDate": "2024-01-15T10:00:00Z",
-        "expiryDate": "2024-12-31T23:59:59Z",
-        "contactInfo": "contact@exampletech.com"
+        "addedDate": "2025-10-01",
+        "contactInfo": "testi@example.com"
       }
     },
     {
-      "id": "example-sponsor-2",
-      "name": "Innovation Solutions Ltd",
-      "logoPath": "assets/images/sponsors/innovation-solutions-logo.png",
-      "adPath": "assets/images/sponsors/innovation-solutions-ad.png",
-      "displayDuration": 8000,
-      "priority": 5,
+      "id": "merus",
+      "name": "Merus",
+      "logoPath": "assets/images/sponsors/merus.png",
+      "displayDuration": 10000,
+      "priority": 1,
       "active": true,
       "metadata": {
-        "addedDate": "2024-02-01T14:30:00Z",
-        "contactInfo": "partnerships@innovationsolutions.fi"
+        "addedDate": "2025-10-01",
+        "contactInfo": "testi@example.com"
       }
     },
     {
-      "id": "example-sponsor-3",
-      "name": "Future Electronics",
-      "logoPath": "assets/images/sponsors/future-electronics-logo.png",
-      "priority": 3,
-      "active": false,
+      "id": "abb",
+      "name": "ABB",
+      "logoPath": "assets/images/sponsors/abb.png",
+      "displayDuration": 10000,
+      "priority": 1,
+      "active": true,
       "metadata": {
-        "addedDate": "2023-11-20T09:15:00Z",
-        "expiryDate": "2024-01-31T23:59:59Z",
-        "contactInfo": "info@futureelectronics.com"
+        "addedDate": "2025-10-01",
+        "contactInfo": "testi@example.com"
       }
     }
   ],
@@ -44,6 +42,7 @@
     "transitionType": "fade",
     "transitionDuration": 1000,
     "shuffleOrder": false,
-    "respectPriority": true
+    "respectPriority": true,
+    "autoReload": true
   }
 }
