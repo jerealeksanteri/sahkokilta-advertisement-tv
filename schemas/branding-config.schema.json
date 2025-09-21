@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Branding Configuration",
+  "description": "Configuration schema for Sähkökilta ry branding and visual identity",
+  "type": "object",
+  "properties": {
+    "logo": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the main logo file"
+        },
+        "fallbackPath": {
+          "type": "string",
+          "description": "Path to fallback logo file"
+        },
+        "position": {
+          "type": "string",
+          "enum": ["top-left", "top-center", "top-right"],
+          "description": "Logo position on screen"
+        },
+        "size": {
+          "type": "object",
+          "properties": {
+            "width": {
+              "type": "number",
+              "minimum": 1
+            },
+            "height": {
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "required": ["width", "height"],
+          "additionalProperties": false
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alternative text for logo"
+        }
+      },
+      "required": ["path", "position", "size", "alt"],
+      "additionalProperties": false
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "description": "Primary brand color (hex format)"
+            },
+            "secondary": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "description": "Secondary brand color (hex format)"
+            },
+            "accent": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "description": "Accent color (hex format)"
+            },
+            "background": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "description": "Background color (hex format)"
+            },
+            "text": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "description": "Text color (hex format)"
+            }
+          },
+          "required": ["primary", "secondary", "background", "text"],
+          "additionalProperties": false
+        },
+        "fonts": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "description": "Primary font family"
+            },
+            "secondary": {
+              "type": "string",
+              "description": "Secondary font family"
+            }
+          },
+          "required": ["primary"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["colors", "fonts"],
+      "additionalProperties": false
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "logoRegion": {
+          "type": "string",
+          "description": "CSS selector for logo region"
+        },
+        "backgroundStyle": {
+          "type": "string",
+          "enum": ["solid", "gradient", "pattern"],
+          "description": "Background style type"
+        }
+      },
+      "required": ["logoRegion", "backgroundStyle"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["logo", "theme", "layout"],
+  "additionalProperties": false
+}

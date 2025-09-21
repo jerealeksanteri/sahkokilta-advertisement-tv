@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "System Configuration",
+  "description": "Configuration schema for system settings and display optimization",
+  "type": "object",
+  "properties": {
+    "display": {
+      "type": "object",
+      "properties": {
+        "resolution": {
+          "type": "object",
+          "properties": {
+            "width": {
+              "type": "number",
+              "minimum": 640
+            },
+            "height": {
+              "type": "number",
+              "minimum": 480
+            }
+          },
+          "required": ["width", "height"],
+          "additionalProperties": false
+        },
+        "orientation": {
+          "type": "string",
+          "enum": ["landscape", "portrait"],
+          "description": "Display orientation"
+        },
+        "scaleFactor": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 5.0,
+          "description": "Display scaling factor"
+        },
+        "fullscreen": {
+          "type": "boolean",
+          "description": "Whether to run in fullscreen mode"
+        }
+      },
+      "required": ["resolution", "orientation", "scaleFactor", "fullscreen"],
+      "additionalProperties": false
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "refreshRate": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 120,
+          "description": "Display refresh rate in Hz"
+        },
+        "memoryLimit": {
+          "type": "string",
+          "pattern": "^[0-9]+[MG]B$",
+          "description": "Memory limit (e.g., '512MB', '2GB')"
+        },
+        "cpuThreshold": {
+          "type": "number",
+          "minimum": 10,
+          "maximum": 100,
+          "description": "CPU usage threshold percentage"
+        }
+      },
+      "required": ["refreshRate", "memoryLimit", "cpuThreshold"],
+      "additionalProperties": false
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["debug", "info", "warn", "error"],
+          "description": "Logging level"
+        },
+        "logPath": {
+          "type": "string",
+          "description": "Path to log files directory"
+        },
+        "maxFileSize": {
+          "type": "string",
+          "pattern": "^[0-9]+[MG]B$",
+          "description": "Maximum log file size (e.g., '10MB', '1GB')"
+        },
+        "maxFiles": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Maximum number of log files to keep"
+        }
+      },
+      "required": ["level", "logPath", "maxFileSize", "maxFiles"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["display", "performance", "logging"],
+  "additionalProperties": false
+}

@@ -1,6 +1,6 @@
 module.exports = {
   // Test environment
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
   
   // Test file patterns
   testMatch: [
@@ -32,6 +32,9 @@ module.exports = {
   
   // Setup files
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
+  
+  // Environment variables
+  setupFiles: ['<rootDir>/tests/jest.env.js'],
   
   // Module resolution
   moduleDirectories: ['node_modules', '<rootDir>'],

@@ -10,13 +10,13 @@
   },
   "performance": {
     "refreshRate": 60,
-    "memoryLimit": "512M",
+    "memoryLimit": "512MB",
     "cpuThreshold": 80
   },
   "logging": {
     "level": "info",
-    "logPath": "logs/",
-    "maxFileSize": "10M",
+    "logPath": "./logs",
+    "maxFileSize": "10MB",
     "maxFiles": 5
   }
 }

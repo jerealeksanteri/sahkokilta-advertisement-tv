@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sponsors Configuration",
+  "description": "Configuration schema for sponsor carousel content and settings",
+  "type": "object",
+  "properties": {
+    "sponsors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "description": "Unique identifier for the sponsor"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Display name of the sponsor"
+          },
+          "logoPath": {
+            "type": "string",
+            "description": "Path to sponsor logo file"
+          },
+          "adPath": {
+            "type": "string",
+            "description": "Optional path to sponsor advertisement"
+          },
+          "displayDuration": {
+            "type": "number",
+            "minimum": 1000,
+            "description": "Display duration in milliseconds"
+          },
+          "priority": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Display priority (1-10, higher is more frequent)"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether sponsor is currently active"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "addedDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Date when sponsor was added"
+              },
+              "expiryDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Optional expiry date for sponsorship"
+              },
+              "contactInfo": {
+                "type": "string",
+                "description": "Contact information for sponsor"
+              }
+            },
+            "required": ["addedDate"],
+            "additionalProperties": false
+          }
+        },
+        "required": ["id", "name", "logoPath", "priority", "active", "metadata"],
+        "additionalProperties": false
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "defaultDuration": {
+          "type": "number",
+          "minimum": 1000,
+          "description": "Default display duration in milliseconds"
+        },
+        "transitionType": {
+          "type": "string",
+          "enum": ["fade", "slide", "zoom"],
+          "description": "Type of transition animation"
+        },
+        "transitionDuration": {
+          "type": "number",
+          "minimum": 100,
+          "maximum": 5000,
+          "description": "Transition duration in milliseconds"
+        },
+        "shuffleOrder": {
+          "type": "boolean",
+          "description": "Whether to shuffle sponsor display order"
+        },
+        "respectPriority": {
+          "type": "boolean",
+          "description": "Whether to respect sponsor priority settings"
+        }
+      },
+      "required": ["defaultDuration", "transitionType", "transitionDuration", "shuffleOrder", "respectPriority"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["sponsors", "settings"],
+  "additionalProperties": false
+}

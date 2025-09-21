@@ -1,7 +1,7 @@
 {
   "logo": {
     "path": "assets/images/sahkokilta-logo.png",
-    "fallbackPath": "assets/images/logo-fallback.png",
+    "fallbackPath": "assets/images/sahkokilta-logo-fallback.png",
     "position": "top-left",
     "size": {
       "width": 200,
@@ -11,19 +11,19 @@
   },
   "theme": {
     "colors": {
-      "primary": "#0066cc",
-      "secondary": "#004499",
-      "accent": "#ffcc00",
-      "background": "#ffffff",
+      "primary": "#FF6B35",
+      "secondary": "#004E89",
+      "accent": "#FFD23F",
+      "background": "#FFFFFF",
       "text": "#333333"
     },
     "fonts": {
       "primary": "Arial, sans-serif",
-      "secondary": "Helvetica, sans-serif"
+      "secondary": "Georgia, serif"
     }
   },
   "layout": {
-    "logoRegion": "top_left",
+    "logoRegion": ".logo-region",
     "backgroundStyle": "solid"
   }
 }

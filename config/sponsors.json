@@ -1,15 +1,41 @@
 {
   "sponsors": [
     {
-      "id": "example-sponsor",
-      "name": "Example Sponsor",
-      "logoPath": "assets/images/sponsors/example-sponsor.png",
-      "displayDuration": 10000,
-      "priority": 1,
+      "id": "example-sponsor-1",
+      "name": "Example Technology Corp",
+      "logoPath": "assets/images/sponsors/example-tech-logo.png",
+      "displayDuration": 12000,
+      "priority": 8,
       "active": true,
       "metadata": {
-        "addedDate": "2025-01-01",
-        "contactInfo": "contact@example.com"
+        "addedDate": "2024-01-15T10:00:00Z",
+        "expiryDate": "2024-12-31T23:59:59Z",
+        "contactInfo": "contact@exampletech.com"
+      }
+    },
+    {
+      "id": "example-sponsor-2",
+      "name": "Innovation Solutions Ltd",
+      "logoPath": "assets/images/sponsors/innovation-solutions-logo.png",
+      "adPath": "assets/images/sponsors/innovation-solutions-ad.png",
+      "displayDuration": 8000,
+      "priority": 5,
+      "active": true,
+      "metadata": {
+        "addedDate": "2024-02-01T14:30:00Z",
+        "contactInfo": "partnerships@innovationsolutions.fi"
+      }
+    },
+    {
+      "id": "example-sponsor-3",
+      "name": "Future Electronics",
+      "logoPath": "assets/images/sponsors/future-electronics-logo.png",
+      "priority": 3,
+      "active": false,
+      "metadata": {
+        "addedDate": "2023-11-20T09:15:00Z",
+        "expiryDate": "2024-01-31T23:59:59Z",
+        "contactInfo": "info@futureelectronics.com"
       }
     }
   ],
