@@ -1,0 +1,477 @@
+/**
+ * MMM-LayoutManager CSS
+ * 
+ * Styles for responsive layout management and TV optimization
+ */
+
+/* CSS Custom Properties for responsive design */
+:root {
+  /* Display properties (set by JavaScript) */
+  --display-width: 1920px;
+  --display-height: 1080px;
+  --display-aspect-ratio: 1.777;
+  --pixel-ratio: 1;
+  
+  /* Layout state */
+  --scale-factor: 1;
+  --current-breakpoint: large;
+  --is-tv: 0;
+  
+  /* Font sizes */
+  --base-font-size: 16px;
+  --small-font-size: 14px;
+  --large-font-size: 20px;
+  --xlarge-font-size: 24px;
+  
+  /* TV-specific properties */
+  --tv-line-height: 1.6;
+  --tv-letter-spacing: 0.02em;
+  --tv-border-radius: 8px;
+  --overscan-compensation: 0.95;
+}
+
+/* Base responsive typography */
+body {
+  font-size: var(--base-font-size);
+  line-height: 1.4;
+}
+
+/* TV display optimizations */
+body.tv-display {
+  line-height: var(--tv-line-height);
+  letter-spacing: var(--tv-letter-spacing);
+  font-weight: var(--tv-font-weight, 500);
+}
+
+body.tv-display * {
+  /* Enhanced readability for TV viewing */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: var(--tv-text-shadow, 0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* TV-specific font sizes */
+body.tv-display .tv-small-text {
+  font-size: var(--tv-small-font-size, var(--small-font-size));
+}
+
+body.tv-display .tv-base-text {
+  font-size: var(--tv-base-font-size, var(--base-font-size));
+}
+
+body.tv-display .tv-large-text {
+  font-size: var(--tv-large-font-size, var(--large-font-size));
+}
+
+body.tv-display .tv-xlarge-text {
+  font-size: var(--tv-xlarge-font-size, var(--xlarge-font-size));
+}
+
+body.tv-display .tv-xxlarge-text {
+  font-size: var(--tv-xxlarge-font-size, calc(var(--xlarge-font-size) * 1.33));
+}
+
+/* Monitor display optimizations */
+body.monitor-display {
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+
+/* Responsive font scaling */
+.small-text {
+  font-size: var(--small-font-size);
+}
+
+.large-text {
+  font-size: var(--large-font-size);
+}
+
+.xlarge-text {
+  font-size: var(--xlarge-font-size);
+}
+
+/* Region scaling */
+.region {
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* TV-specific region adjustments */
+body.tv-display .region {
+  /* Apply overscan compensation */
+  transform: scale(var(--overscan-compensation));
+}
+
+/* Breakpoint-specific styles */
+@media (max-width: 768px) {
+  :root {
+    --base-font-size: 14px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --base-font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  :root {
+    --base-font-size: 16px;
+  }
+}
+
+@media (min-width: 1441px) {
+  :root {
+    --base-font-size: 18px;
+  }
+}
+
+/* Orientation-specific adjustments */
+body.orientation-portrait {
+  --current-scale-factor: var(--portrait-scale-factor, calc(var(--scale-factor) * 0.9));
+  --current-content-width: var(--portrait-content-width, 90%);
+  --current-font-scale: var(--portrait-font-scale, 0.95);
+}
+
+body.orientation-landscape {
+  --current-scale-factor: var(--landscape-scale-factor, var(--scale-factor));
+  --current-content-width: var(--landscape-content-width, 100%);
+  --current-font-scale: var(--landscape-font-scale, 1.0);
+}
+
+/* Portrait-specific TV layout */
+body.tv-display.orientation-portrait .region.branding {
+  height: var(--portrait-region-branding-height, 20%);
+  width: 100%;
+  text-align: center;
+}
+
+body.tv-display.orientation-portrait .region.carousel {
+  top: 20%;
+  height: var(--portrait-region-carousel-height, 60%);
+  width: 100%;
+}
+
+body.tv-display.orientation-portrait .region.content {
+  top: 80%;
+  height: var(--portrait-region-content-height, 20%);
+  width: 100%;
+}
+
+/* Landscape-specific TV layout (default) */
+body.tv-display.orientation-landscape .region {
+  /* Use default TV region positioning */
+}
+
+@media (orientation: portrait) {
+  body {
+    /* Legacy support for CSS media queries */
+    --scale-factor: calc(var(--scale-factor) * 0.9);
+  }
+}
+
+@media (orientation: landscape) {
+  body {
+    /* Legacy support for CSS media queries */
+    --scale-factor: var(--scale-factor);
+  }
+}
+
+/* High DPI display adjustments */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    /* Adjust for high DPI displays */
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* TV-specific component styling */
+body.tv-display .module {
+  border-radius: var(--tv-border-radius);
+  padding: var(--tv-content-padding, 24px);
+  margin: var(--tv-module-margin, 16px);
+  border: var(--tv-border-width, 2px) solid transparent;
+}
+
+body.tv-display .module-header {
+  font-size: var(--tv-large-font-size, var(--large-font-size));
+  font-weight: 600;
+  margin-bottom: var(--tv-spacing-md, 16px);
+}
+
+body.tv-display .module-content {
+  font-size: var(--tv-base-font-size, var(--base-font-size));
+  line-height: var(--tv-line-height, 1.6);
+}
+
+/* TV layout regions */
+body.tv-display .region.branding {
+  position: absolute;
+  top: var(--tv-region-branding-top, var(--tv-safe-margin-y, 0));
+  left: var(--tv-region-branding-left, var(--tv-safe-margin-x, 0));
+  width: var(--tv-region-branding-width, 30%);
+  height: var(--tv-region-branding-height, 15%);
+}
+
+body.tv-display .region.carousel {
+  position: absolute;
+  top: var(--tv-region-carousel-top, 25%);
+  left: var(--tv-region-carousel-left, var(--tv-safe-margin-x, 0));
+  width: var(--tv-region-carousel-width, var(--tv-safe-area-width, 100%));
+  height: var(--tv-region-carousel-height, 50%);
+}
+
+body.tv-display .region.content {
+  position: absolute;
+  top: var(--tv-region-content-top, 80%);
+  left: var(--tv-region-content-left, var(--tv-safe-margin-x, 0));
+  width: var(--tv-region-content-width, var(--tv-safe-area-width, 100%));
+  height: var(--tv-region-content-height, 15%);
+}
+
+/* TV spacing utilities */
+body.tv-display .tv-spacing-xs {
+  margin: var(--tv-spacing-xs, 4px);
+}
+
+body.tv-display .tv-spacing-sm {
+  margin: var(--tv-spacing-sm, 8px);
+}
+
+body.tv-display .tv-spacing-md {
+  margin: var(--tv-spacing-md, 16px);
+}
+
+body.tv-display .tv-spacing-lg {
+  margin: var(--tv-spacing-lg, 32px);
+}
+
+body.tv-display .tv-spacing-xl {
+  margin: var(--tv-spacing-xl, 48px);
+}
+
+/* Debug mode styles */
+body.debug-mode::before {
+  content: "Display: " var(--display-width) "×" var(--display-height) 
+           " | Breakpoint: " var(--current-breakpoint) 
+           " | Scale: " var(--scale-factor)
+           " | TV: " var(--is-tv);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: monospace;
+  z-index: 9999;
+  white-space: pre;
+}
+
+/* Utility classes for responsive design */
+.hide-on-small {
+  display: block;
+}
+
+.hide-on-medium {
+  display: block;
+}
+
+.hide-on-large {
+  display: block;
+}
+
+.show-on-tv {
+  display: none;
+}
+
+.hide-on-tv {
+  display: block;
+}
+
+/* Responsive utility classes based on breakpoints */
+@media (max-width: 768px) {
+  .hide-on-small {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hide-on-medium {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hide-on-large {
+    display: none !important;
+  }
+}
+
+/* TV-specific visibility */
+body.tv-display .show-on-tv {
+  display: block !important;
+}
+
+body.tv-display .hide-on-tv {
+  display: none !important;
+}
+
+body.monitor-display .show-on-tv {
+  display: none !important;
+}
+
+/* Animation performance optimizations */
+body.tv-display * {
+  /* Use GPU acceleration for better performance on TV hardware */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Smooth transitions for layout changes */
+.region,
+.module {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure proper scaling for different aspect ratios */
+@media (aspect-ratio: 16/9) {
+  body {
+    --aspect-ratio-modifier: 1;
+  }
+}
+
+@media (aspect-ratio: 4/3) {
+  body {
+    --aspect-ratio-modifier: 0.9;
+  }
+}
+
+@media (aspect-ratio: 21/9) {
+  body {
+    --aspect-ratio-modifier: 1.1;
+  }
+}/* 
+Emergency TV mode styles */
+body.emergency-tv-mode {
+  --scale-factor: var(--emergency-scale-factor, 0.8) !important;
+  --base-font-size: var(--emergency-font-size, 18px) !important;
+  --tv-line-height: var(--emergency-line-height, 1.8) !important;
+  --overscan-compensation: var(--emergency-overscan, 0.9) !important;
+}
+
+body.emergency-tv-mode * {
+  /* Force conservative styling */
+  font-weight: 600 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.emergency-tv-mode .module {
+  border: 3px solid rgba(255, 255, 255, 0.3) !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  padding: 32px !important;
+}
+
+/* TV-specific animations and transitions */
+body.tv-display .region {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body.tv-display .module {
+  transition: transform 0.3s ease-out,
+              opacity 0.3s ease-out,
+              background-color 0.3s ease-out;
+}
+
+/* TV-optimized scrolling */
+body.tv-display {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body.tv-display * {
+  /* Prevent text selection on TV */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* TV-specific focus styles for accessibility */
+body.tv-display *:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* High contrast mode for TV */
+body.tv-display.high-contrast {
+  --tv-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  filter: contrast(1.2) brightness(1.1);
+}
+
+body.tv-display.high-contrast .module {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* TV performance optimizations */
+body.tv-display * {
+  /* Enable hardware acceleration */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Responsive TV breakpoints */
+@media screen and (min-width: 1920px) and (orientation: landscape) {
+  body.tv-display {
+    --tv-scale-multiplier: 1.0;
+  }
+}
+
+@media screen and (min-width: 2560px) and (orientation: landscape) {
+  body.tv-display {
+    --tv-scale-multiplier: 1.2;
+  }
+}
+
+@media screen and (min-width: 3840px) and (orientation: landscape) {
+  body.tv-display {
+    --tv-scale-multiplier: 1.5;
+  }
+}
+
+/* TV-specific utility classes */
+.tv-only {
+  display: none;
+}
+
+body.tv-display .tv-only {
+  display: block;
+}
+
+.tv-hide {
+  display: block;
+}
+
+body.tv-display .tv-hide {
+  display: none;
+}
+
+.tv-center {
+  text-align: center;
+}
+
+body.tv-display .tv-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tv-safe-area {
+  width: var(--tv-safe-area-width, 100%);
+  height: var(--tv-safe-area-height, 100%);
+  margin: var(--tv-safe-margin-y, 0) var(--tv-safe-margin-x, 0);
+}
