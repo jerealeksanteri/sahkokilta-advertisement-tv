@@ -22,7 +22,7 @@ let config = {
 
   modules: [
     {
-      module: 'MMM-SahkokilltaBranding',
+      module: 'MMM-SahkokiltaBranding',
       position: 'top_left',
       config: {
         configPath: 'config/branding.json',

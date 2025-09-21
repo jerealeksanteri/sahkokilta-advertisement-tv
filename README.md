@@ -65,7 +65,7 @@ A professional MagicMirror²-based advertisement display system designed for Sä
 ```
 sahkokilta-advertisement-tv/
 ├── modules/                    # MagicMirror² custom modules
-│   ├── MMM-SahkokilltaBranding/   # Guild branding module
+│   ├── MMM-SahkokiltaBranding/   # Guild branding module
 │   ├── MMM-SponsorCarousel/       # Sponsor carousel module
 │   └── MMM-LayoutManager/         # Display layout manager
 ├── services/                   # Core services

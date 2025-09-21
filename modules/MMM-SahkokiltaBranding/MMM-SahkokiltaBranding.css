@@ -1,0 +1,187 @@
+/* MMM-SahkokiltaBranding.css
+ * Styles for Sähkökilta ry Branding Module
+ */
+
+/* CSS Custom Properties for Brand Colors */
+:root {
+  --brand-primary: #FF6B35;
+  --brand-secondary: #004E89;
+  --brand-accent: #FFD23F;
+  --brand-background: #FFFFFF;
+  --brand-text: #333333;
+  --brand-font-primary: Arial, sans-serif;
+  --brand-font-secondary: Georgia, serif;
+}
+
+/* Branding Container */
+.MMM-SahkokiltaBranding .branding-container {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Logo Container Base Styles */
+.MMM-SahkokiltaBranding .logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Logo Positioning */
+.MMM-SahkokiltaBranding .logo-container.logo-top-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  justify-content: flex-start;
+}
+
+.MMM-SahkokiltaBranding .logo-container.logo-top-center {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+}
+
+.MMM-SahkokiltaBranding .logo-container.logo-top-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  justify-content: flex-end;
+}
+
+/* Guild Logo Styles */
+.MMM-SahkokiltaBranding .guild-logo {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease-in-out;
+}
+
+.MMM-SahkokiltaBranding .guild-logo:hover {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transform: scale(1.02);
+}
+
+/* Logo Fallback Text */
+.MMM-SahkokiltaBranding .logo-fallback {
+  font-family: var(--brand-font-primary);
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--brand-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  border: 2px solid var(--brand-primary);
+  border-radius: 8px;
+  background: var(--brand-background);
+  transition: all 0.3s ease-in-out;
+}
+
+.MMM-SahkokiltaBranding .logo-fallback:hover {
+  background: var(--brand-primary);
+  color: var(--brand-background);
+  transform: scale(1.02);
+}
+
+/* Loading State */
+.MMM-SahkokiltaBranding .branding-loading {
+  font-family: var(--brand-font-primary);
+  color: var(--brand-text);
+  font-size: 16px;
+  opacity: 0.7;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Background Styles */
+body.bg-style-solid {
+  background-color: var(--brand-background);
+}
+
+body.bg-style-gradient {
+  background: linear-gradient(135deg, 
+    var(--brand-background) 0%, 
+    var(--brand-primary) 100%);
+}
+
+body.bg-style-pattern {
+  background-color: var(--brand-background);
+  background-image: 
+    radial-gradient(circle at 25% 25%, var(--brand-accent) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, var(--brand-secondary) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .MMM-SahkokiltaBranding .logo-container {
+    padding: 5px;
+  }
+  
+  .MMM-SahkokiltaBranding .logo-container.logo-top-left,
+  .MMM-SahkokiltaBranding .logo-container.logo-top-center,
+  .MMM-SahkokiltaBranding .logo-container.logo-top-right {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    position: relative;
+    transform: none;
+  }
+  
+  .MMM-SahkokiltaBranding .guild-logo {
+    max-width: 150px;
+    max-height: 75px;
+  }
+  
+  .MMM-SahkokiltaBranding .logo-fallback {
+    font-size: 18px;
+    padding: 8px 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .MMM-SahkokiltaBranding .guild-logo {
+    max-width: 120px;
+    max-height: 60px;
+  }
+  
+  .MMM-SahkokiltaBranding .logo-fallback {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+}
+
+/* High DPI / Retina Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .MMM-SahkokiltaBranding .guild-logo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Animation for theme changes */
+.MMM-SahkokiltaBranding .branding-container * {
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Accessibility */
+.MMM-SahkokiltaBranding .guild-logo:focus,
+.MMM-SahkokiltaBranding .logo-fallback:focus {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .MMM-SahkokiltaBranding .logo-container {
+    position: static !important;
+    transform: none !important;
+  }
+  
+  .MMM-SahkokiltaBranding .guild-logo {
+    filter: none !important;
+  }
+}
