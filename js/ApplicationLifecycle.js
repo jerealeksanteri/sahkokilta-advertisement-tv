@@ -525,10 +525,14 @@ class ApplicationLifecycle extends EventEmitter {
     
     if (this.config.enableGracefulShutdown) {
       this.stop().finally(() => {
-        process.exit(1);
+        if (process.env.NODE_ENV !== 'test') {
+          process.exit(1);
+        }
       });
     } else {
-      process.exit(1);
+      if (process.env.NODE_ENV !== 'test') {
+        process.exit(1);
+      }
     }
   }
   

@@ -56,25 +56,8 @@ global.ResizeObserver = class ResizeObserver {
   }
 };
 
+// Import comprehensive test utilities
+const { testUtils } = require('./mocks');
+
 // Set up global test utilities
-global.testUtils = {
-  // Helper to create mock MagicMirror module
-  createMockModule: (name, config = {}) => ({
-    name,
-    config: { ...config },
-    data: {},
-    loaded: false,
-    hidden: false,
-  }),
-  
-  // Helper to wait for async operations
-  waitFor: (ms = 100) => new Promise(resolve => setTimeout(resolve, ms)),
-  
-  // Helper to create mock file system operations
-  createMockFS: () => ({
-    readFile: jest.fn(),
-    writeFile: jest.fn(),
-    exists: jest.fn(),
-    watch: jest.fn(),
-  }),
-};
+global.testUtils = testUtils;

@@ -12,14 +12,17 @@ module.exports = {
   // Coverage configuration
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov', 'html'],
+  coverageReporters: ['text', 'lcov', 'html', 'json-summary'],
   collectCoverageFrom: [
     'modules/**/*.js',
     'services/**/*.js',
+    'js/**/*.js',
     '!**/node_modules/**',
     '!**/MagicMirror/**',
     '!**/coverage/**',
     '!**/tests/**',
+    '!**/mocks/**',
+    '!js/electron.js',
   ],
   coverageThreshold: {
     global: {
