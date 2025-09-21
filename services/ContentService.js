@@ -5,6 +5,7 @@ const EventEmitter = require('events');
 const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
 const winston = require('winston');
+const { ErrorHandler, RecoveryAction } = require('./ErrorHandler');
 
 /**
  * Content service for managing configuration files with file watching and validation
@@ -33,6 +34,10 @@ class ContentService extends EventEmitter {
     
     // Initialize logger with environment-specific configuration
     this.logger = this.createLogger();
+    
+    // Initialize error handler
+    this.errorHandler = new ErrorHandler();
+    this.errorHandler.initialize(this.logger);
   }
 
   /**
@@ -125,14 +130,28 @@ class ContentService extends EventEmitter {
       } catch (error) {
         retries++;
         
-        if (error.code === 'ENOENT') {
-          const notFoundError = new Error(`Configuration file not found: ${absolutePath}`);
-          notFoundError.code = 'FILE_NOT_FOUND';
-          throw notFoundError;
+        // Use error handler for recovery strategies
+        const recovery = this.errorHandler.handleConfigError(error, absolutePath, schemaKey);
+        
+        if (recovery.action === RecoveryAction.USE_FALLBACK) {
+          this.logger.warn(`Using fallback configuration: ${recovery.message}`);
+          this.emit('fallback-used', { filePath, schemaKey, fallback: recovery.fallback });
+          return recovery.fallback;
         }
         
-        if (error.code === 'VALIDATION_ERROR' || retries > this.options.maxRetries) {
-          this.logger.error(`Failed to load configuration: ${filePath}`, { 
+        if (recovery.action === RecoveryAction.RETRY_OPERATION && retries <= this.options.maxRetries) {
+          this.logger.warn(`Retrying configuration load: ${filePath}`, { 
+            attempt: retries,
+            error: error.message 
+          });
+          
+          await this.delay(recovery.retryDelay || this.options.retryDelay);
+          continue;
+        }
+        
+        // If all recovery strategies fail, throw the error
+        if (retries > this.options.maxRetries) {
+          this.logger.error(`Failed to load configuration after ${retries} attempts: ${filePath}`, { 
             error: error.message,
             retries 
           });
@@ -424,6 +443,11 @@ class ContentService extends EventEmitter {
     
     // Clear caches
     this.contentCache.clear();
+    
+    // Cleanup error handler
+    if (this.errorHandler) {
+      this.errorHandler.cleanup();
+    }
     
     // Remove all listeners
     this.removeAllListeners();
