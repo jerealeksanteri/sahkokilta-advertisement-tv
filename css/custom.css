@@ -1,0 +1,197 @@
+/* Custom CSS for Sähkökilta ry Advertisement TV
+ * Global styles and theme integration
+ */
+
+/* CSS Custom Properties for Brand Theme */
+:root {
+  /* Default brand colors - will be overridden by branding module */
+  --brand-primary: #FF6B35;
+  --brand-secondary: #004E89;
+  --brand-accent: #FFD23F;
+  --brand-background: #FFFFFF;
+  --brand-text: #333333;
+  
+  /* Default fonts */
+  --brand-font-primary: 'Arial', sans-serif;
+  --brand-font-secondary: 'Georgia', serif;
+  
+  /* Layout variables */
+  --header-height: 100px;
+  --footer-height: 50px;
+  --sidebar-width: 300px;
+  
+  /* Animation variables */
+  --transition-fast: 0.3s ease;
+  --transition-medium: 0.6s ease;
+  --transition-slow: 1.0s ease;
+}
+
+/* Global body styling */
+body {
+  background-color: var(--brand-background);
+  color: var(--brand-text);
+  font-family: var(--brand-font-primary);
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars in kiosk mode */
+}
+
+/* MagicMirror container optimization */
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Region styling for better module positioning */
+.region {
+  position: relative;
+  z-index: 1;
+}
+
+.region.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: var(--header-height);
+}
+
+.region.middle {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.region.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+  min-height: var(--footer-height);
+}
+
+/* Fullscreen region for layout manager */
+.region.fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Module wrapper styling */
+.module {
+  transition: var(--transition-medium);
+  opacity: 1;
+}
+
+.module.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Loading states */
+.module-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  color: var(--brand-secondary);
+  font-size: 1.2em;
+}
+
+.module-loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--brand-accent);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error states */
+.module-error {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px;
+  color: #cc0000;
+  font-size: 0.9em;
+}
+
+/* Background style variations */
+.bg-style-solid {
+  background-color: var(--brand-background);
+}
+
+.bg-style-gradient {
+  background: linear-gradient(135deg, var(--brand-background) 0%, var(--brand-secondary) 100%);
+}
+
+.bg-style-pattern {
+  background-color: var(--brand-background);
+  background-image: 
+    radial-gradient(circle at 1px 1px, var(--brand-accent) 1px, transparent 0);
+  background-size: 20px 20px;
+  opacity: 0.05;
+}
+
+/* TV-specific optimizations */
+@media screen and (min-width: 1920px) {
+  body {
+    font-size: 1.2em;
+  }
+  
+  .region.top,
+  .region.middle,
+  .region.bottom {
+    padding: 40px;
+  }
+  
+  :root {
+    --header-height: 120px;
+    --footer-height: 60px;
+  }
+}
+
+/* High DPI display optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles (for debugging) */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .region.fullscreen {
+    display: none;
+  }
+}

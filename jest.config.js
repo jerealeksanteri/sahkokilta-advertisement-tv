@@ -38,7 +38,7 @@ module.exports = {
   
   // Module resolution
   moduleDirectories: ['node_modules', '<rootDir>'],
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^@modules/(.*)$': '<rootDir>/modules/$1',
     '^@services/(.*)$': '<rootDir>/services/$1',
